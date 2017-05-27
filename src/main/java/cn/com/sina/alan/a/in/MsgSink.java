@@ -13,10 +13,10 @@ public class MsgSink {
 		System.out.println("Received: " + payload);
 	}
 	
-//	@StreamListener(Sink.INPUT)
-//	public void receiver(Message<Object> message) {
-//		Object obj = message.getPayload();
-//		System.out.println("接受对象:" + obj);
-//	}
+	@StreamListener(Sink.INPUT)
+	public void receiver(Message<Object> message) {
+		Object obj = message.getPayload();
+		System.out.println("接受对象:" + obj);
+	}
 
 }

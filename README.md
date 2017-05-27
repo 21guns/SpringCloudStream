@@ -5,8 +5,8 @@ SpringCloudStream DEMO
 
 项目demo需要kafka服务，自行替换配置中的参数。
 
-	spring.cloud.stream.kafka.binder.brokers=10.79.96.52:9092
-	spring.cloud.stream.kafka.binder.zk-nodes=10.79.96.52:2182
+	spring.cloud.stream.kafka.binder.brokers=127.0.0.1:9092
+	spring.cloud.stream.kafka.binder.zk-nodes=127.0.0.1:2182
 
 ## 快速开始
 

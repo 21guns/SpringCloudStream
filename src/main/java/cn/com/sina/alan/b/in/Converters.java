@@ -1,9 +1,9 @@
 package cn.com.sina.alan.b.in;
 
-import org.springframework.cloud.stream.converter.AbstractFromMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.Message;
+import org.springframework.messaging.converter.AbstractMessageConverter;
 import org.springframework.messaging.converter.MessageConversionException;
 import org.springframework.util.MimeType;
 
@@ -15,7 +15,7 @@ public class Converters {
 
 	//Register custom converter
 	@Bean
-	public AbstractFromMessageConverter fooConverter() {
+	public AbstractMessageConverter fooConverter() {
 		return new FooToBarConverter();
 	}
 
@@ -50,20 +50,16 @@ public class Converters {
 
 	}
 
-	public static class FooToBarConverter extends AbstractFromMessageConverter {
+	public static class FooToBarConverter extends AbstractMessageConverter {
 
 		public FooToBarConverter() {
-			super(MimeType.valueOf("test/bar"));
+			super(new MimeType("application", "bar"));
+
 		}
 
 		@Override
-		protected Class<?>[] supportedTargetTypes() {
-			return new Class[] {Bar.class};
-		}
-
-		@Override
-		protected Class<?>[] supportedPayloadTypes() {
-			return new Class<?>[] {Foo.class};
+		protected boolean supports(Class<?> clazz) {
+			return (Bar.class == clazz);
 		}
 
 		@Override
